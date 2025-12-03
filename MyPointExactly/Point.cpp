@@ -16,20 +16,22 @@ Point::Point(int x, int y)
 
 Point::Point(const Point& other)
 {
-	delete _coord;
-	_coord = other._coord;
+	// Allocate a new array.
+	_coord = new int[2];
+	_coord[0] = other._coord[0];
+	_coord[1] = other._coord[1];
 }
 
 Point::~Point()
 {
-	delete _coord;
+	delete[] _coord; // Use delete[] because _coord is an array.
 }
 
 Point& Point::operator=(const Point& other)
 {
 	delete _coord;
 	_coord = new int[2];
-	memcpy(_coord, other._coord, sizeof(int)*2);//Changed 2 for sizeof(int)*2 to prevent over flowing the memory.
+	memcpy(_coord, other._coord, sizeof(int)*2);// Changed 2 for sizeof(int)*2 to prevent over flowing the memory.
 	return *this;
 }
 
