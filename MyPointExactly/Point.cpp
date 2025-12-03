@@ -29,7 +29,7 @@ Point& Point::operator=(const Point& other)
 {
 	delete _coord;
 	_coord = new int[2];
-	memcpy(_coord, other._coord, 2);
+	memcpy(_coord, other._coord, sizeof(int)*2);//Changed 2 for sizeof(int)*2 to prevent over flowing the memory.
 	return *this;
 }
 
